@@ -1,0 +1,24 @@
+<div>
+    <mat-card class="signupCard">
+        <form class="signup">
+            <mat-form-field>
+                <input matInput required placeholder="Username">
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput placeholder="Enter your email" [formControl]="email" required>
+                <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'">
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput placeholder="Re-enter your password" [type]="hide ? 'password' : 'text'">
+                <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+            </mat-form-field>
+
+        </form>
+    </mat-card>
+</div>

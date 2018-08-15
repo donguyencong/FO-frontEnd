@@ -1,0 +1,23 @@
+.columns {
+    display: flex;
+    margin: 0 2em 0 2em;
+}
+
+.column1 {
+    order: 1;
+    margin-right: 2em;
+}
+
+.column2 {
+    order: 2;
+    flex-basis: 55%;
+    margin: auto;
+}
+.column3 {
+    order: 3;
+    margin-right: 5em;
+}
+
+.content {
+    top: 5em;
+}

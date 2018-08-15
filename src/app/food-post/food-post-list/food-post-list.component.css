@@ -1,0 +1,14 @@
+.example-card {
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 2em;
+  }
+  
+.row {
+  display: inline-block;
+}
+
+.post {
+  margin-bottom: 2em;
+}

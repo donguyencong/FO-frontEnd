@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
+
+
+import { FoodPost } from '../foodpost.model';
+import { FoodpostService } from '../foodpost.service';
 
 @Component({
   selector: 'app-food-post-list',
@@ -6,16 +11,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./food-post-list.component.css']
 })
 export class FoodPostListComponent implements OnInit {
-  food_posts = [
-    { title: 'Canh ga chien nuoc mam', author: 'Cong Do Nguyen', duration: '1hr', content: 'Nau the nay nau the no' },
-    { title: 'Ga rang muoi', author: 'Cong Do Nguyen', duration: '1hr', content: 'Nau the nay nau the no' },
-    { title: 'Thit rang chay canh', author: 'Cong Do Nguyen', duration: '1hr', content: 'Nau the nay nau the no' },
-    { title: 'Suon chua ngot', author: 'Cong Do Nguyen', duration: '1hr', content: 'Nau the nay nau the no' },
-    { title: 'Ga xao gung', author: 'Cong Do Nguyen', duration: '1hr', content: 'Nau the nay nau the no' }
-  ];
-  constructor() { }
+  posts: FoodPost[] = [];
+  private postsSub: Subscription;
+  constructor(public foodPostsService: FoodpostService) { 
+ 
+  }
 
   ngOnInit() {
+    this.foodPostsService.getPosts();
+    this.postsSub = this.foodPostsService.getPostUpdateListener()
+      .subscribe((posts: FoodPost[]) => {
+        this.posts = posts;
+      });
+  }
+
+  ngOnDestroy() {
+    this.postsSub.unsubscribe();
   }
 
 }

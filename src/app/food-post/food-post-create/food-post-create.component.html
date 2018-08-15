@@ -1,11 +1,90 @@
-  <mat-form-field>
-    <input matInput placeholder="Input">
-  </mat-form-field>
-  <mat-form-field>
-    <textarea matInput placeholder="Textarea"></textarea>
-  </mat-form-field>
-  <mat-form-field>
-    <mat-select placeholder="Select">
-      <mat-option value="option">Option</mat-option>
-    </mat-select>
-  </mat-form-field>
+<div class="register">
+  <mat-card flex="50">
+    <form (submit)="onSubmitRecipe(submitRecipeForm)" #submitRecipeForm="ngForm" class="food-post-create">
+      <mat-form-field>
+        <input
+        matInput
+        placeholder="Recipe name"
+        required
+        name="recipe"
+        ngModel
+        #recipeName="ngModel"
+        >
+        <mat-error *ngIf="recipeName.invalid">Please enter recipe name</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select 
+          placeholder="Asian?"
+          required
+          name="type"
+          ngModel 
+          #type="ngModel"
+          >
+          <mat-option value="Asian">Asian</mat-option>
+          <mat-option value="Not Asian">Not Asian</mat-option>
+        </mat-select>
+        <mat-error *ngIf="type.invalid">Please select type</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select
+        placeholder="Vegan?"
+        required
+        name="vegan"
+        ngModel 
+        #vegan="ngModel">
+          <mat-option value="yes">Yes</mat-option>
+          <mat-option value="no">No</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-chip-list #chipList required
+          >
+          <div *ngIf="ingredients.length > 0">
+            <mat-chip 
+              *ngFor="let ingredient of ingredients"
+              [selectable]="selectable"
+              [removable]="removable"
+              (removed)="remove(ingredient)">
+              {{ingredient}}
+              <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+            </mat-chip>
+          </div>
+          <input
+            placeholder="Ingredients (enter for each)"
+            [matChipInputFor]="chipList"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+            [matChipInputAddOnBlur]="addOnBlur"
+            (matChipInputTokenEnd)="add($event)">
+          
+        </mat-chip-list>
+      
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput
+        placeholder="Duration"
+        required
+        ngModel 
+        #duration="ngModel"
+        name="duration">
+        <mat-error *ngIf="duration.invalid">Please enter duration</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <textarea matInput 
+        placeholder="Directions"
+        required
+        ngModel 
+        #direction="ngModel"
+        name="direction">
+        ></textarea>
+        <mat-error *ngIf="direction.invalid">Please enter duration</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <textarea 
+        matInput
+        placeholder="Additional Comments"
+        name="comments"></textarea>
+      </mat-form-field>
+      <button mat-raised-button type="submit" [disabled]="ingredients.length < 1">Submit Recipe</button>
+    </form>
+  </mat-card>
+</div>
