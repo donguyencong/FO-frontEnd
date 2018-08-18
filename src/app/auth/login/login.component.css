@@ -17,3 +17,7 @@ div {
     justify-content: center;
     align-items: center;
 }
+
+button {
+  margin: 0 33% 0 33%;
+}

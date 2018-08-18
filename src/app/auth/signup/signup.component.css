@@ -1,0 +1,23 @@
+.signup {
+  display: flex;
+  flex-direction: column;
+}
+
+mat-card {
+  width: 75%;
+}
+
+.signupCard {
+  justify-content: center;
+  align-items: center;
+}
+
+.signUpPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button {
+margin: 0 33% 0 33%;
+}

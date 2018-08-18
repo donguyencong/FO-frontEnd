@@ -28,7 +28,7 @@ import { FeaturePostComponent } from './feature-post/feature-post.component';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 
-
+import { CheckPasswordDirective } from './auth/signup/valid-passwords.directive';
 
 const appRoute: Routes = [
   { path: '', component: HomeComponent },
@@ -47,7 +47,8 @@ const appRoute: Routes = [
     FilterComponent,
     FeaturePostComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    CheckPasswordDirective
   ],
   imports: [
     BrowserModule,

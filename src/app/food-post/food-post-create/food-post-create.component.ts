@@ -18,7 +18,7 @@ export class FoodPostCreateComponent implements OnInit {
   selectable = true;
   removable = true;
   addOnBlur = false;
-  show: boolean = true;
+  show = true;
   separatorKeysCodes: number[] = [ENTER, COMMA];
   ingredients: string[] = [];
   @ViewChild('ingredientInput') ingredientInput: ElementRef;
@@ -50,20 +50,18 @@ export class FoodPostCreateComponent implements OnInit {
   onSubmitRecipe(form: NgForm) {
     console.log(form);
     console.log(this.ingredients);
-    const vegan: boolean = (form.value.vegan==="yes");
+    const vegan: boolean = (form.value.vegan === 'yes');
     const post: FoodPost = {
       title: form.value.recipe,
       comments: form.value.comments,
       ingredients: this.ingredients,
-      author: "NA",
+      author: 'NA',
       vegan: vegan,
       type: form.value.type,
       duration: form.value.duration,
       rating: 5,
       content: form.value.direction
-    }
-    
-    
+    };
   }
 
   ngOnInit() {
